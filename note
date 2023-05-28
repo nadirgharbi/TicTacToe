@@ -1,0 +1,22 @@
+class main:
+    def menu():
+        orange_theme = pygame_menu.themes.THEME_ORANGE
+        menu_style = pygame_menu.Menu('MORPION',400,400,theme=orange_theme)
+        menu_style.add.selector('DIFICULTY : ', [('EASIEST',1), ('ADVANCED',2), ('HARDEST',3)]) # onchange=setDifficulty
+        menu_style.add.button('PLAY', Game.drawLine(Game))
+        menu_style.add.button('QUIT', pygame_menu.events.EXIT)
+
+    def drawLine():
+        horizontal_line1 = (WIDTH//3) +10
+        horizontal_line2 = (WIDTH-horizontal_line1) -10
+
+        vertical_line1 = (WIDTH//3) +10
+        vertical_line2 = (WIDTH-vertical_line1) -10
+
+        # HORIZONTAL LINES
+        pygame.draw.line(screen, LIGHT, (horizontal_line1,50), (horizontal_line1,430), width=5)
+        pygame.draw.line(screen, LIGHT, (horizontal_line2,50), (horizontal_line2,430), width=5)
+
+        # VERTICAL LINES
+        pygame.draw.line(screen, LIGHT, (50,vertical_line1), (430,vertical_line1), width=5)
+        pygame.draw.line(screen, LIGHT, (50,vertical_line2), (430,vertical_line2), width=5)
