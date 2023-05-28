@@ -365,6 +365,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode(SIZE)
+pygame.display.set_caption('Tic Tac Toe')
 screen.fill(DARK)
 
 game = Game()
