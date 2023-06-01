@@ -1,8 +1,8 @@
 import pygame
-import sys, time
-import pygame_menu
-
+import sys, time, pygame
 from const import *
+
+pygame.init()
 
 class Game:
     def __init__(self):
@@ -10,10 +10,10 @@ class Game:
         self.round_img = pygame.image.load('round.png')
         self.cross_img = pygame.image.load('cross.png')
         # LINE
-        self.horizontal_line1 = (WIDTH // 3) + 15
-        self.horizontal_line2 = (WIDTH - self.horizontal_line1) - 10
-        self.vertical_line1 = (WIDTH // 3) + 15
-        self.vertical_line2 = (WIDTH - self.vertical_line1) - 10
+        self.horizontal_line1 = (WIDTH_LINE // 3) + 15
+        self.horizontal_line2 = (WIDTH_LINE - self.horizontal_line1) - 10
+        self.vertical_line1 = (WIDTH_LINE // 3) + 15
+        self.vertical_line2 = (WIDTH_LINE - self.vertical_line1) - 10
         self.display_score = True
         self.turn = True
         self.score_O = 0
@@ -32,6 +32,11 @@ class Game:
             '=','(','.',
             'è','_','ç'
         ]
+
+        self.history_win = []
+        self.font = pygame.font.Font('freesansbold.ttf', 18)
+        self.messageWin_Player_O = self.font.render('PLAYER O won', True, LIGHT, DARK)
+        self.messageWin_Player_X = self.font.render('PLAYER X won', True, LIGHT, DARK)
 
     def draw_lines(self):
         # HORIZONTAL LINES
@@ -180,7 +185,6 @@ class Game:
         if self.checkWin[6] == self.checkWin[7] == self.checkWin[8]:
             return True
 
-
     def draw_condition(self):
         self.gridComplete = all((case == game.cases[0] and case == False) for case in game.cases)
         if self.gridComplete:
@@ -291,10 +295,10 @@ class Game:
             else:
                 return False
 
-
     def update_score(self):
         if self.win():
             if not self.turn:
+                self.history_win.append(self.messageWin_Player_O)
                 # CIRCLE SCORE VERTICAL
                 if (self.checkWin[0] and self.checkWin[3] and self.checkWin[6]) == 'O':
                     self.score_O += 1
@@ -341,7 +345,6 @@ class Game:
                 elif (self.checkWin[6] and self.checkWin[7] and self.checkWin[8]) == 'X':
                     self.score_X += 1
 
-
     def reset_stats(self):
 
         self.cases = [
@@ -361,22 +364,17 @@ class Game:
         self.score_X = 0
         self.score_O = 0
 
-pygame.init()
-clock = pygame.time.Clock()
-
-screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption('Tic Tac Toe')
-screen.fill(DARK)
+    def draw_history(self):
+        return self.history_win
 
 game = Game()
 
-font = pygame.font.Font('freesansbold.ttf',18)
 game.draw_lines()
 
 while True:
     clock.tick()
-    player_X = font.render(f'PLAYER X : {game.score_X}', True, LIGHT, DARK)
-    player_O = font.render(f'PLAYER O : {game.score_O}', True, LIGHT, DARK)
+    player_X = game.font.render(f'PLAYER X : {game.score_X}', True, LIGHT, DARK)
+    player_O = game.font.render(f'PLAYER O : {game.score_O}', True, LIGHT, DARK)
 
     space_image = pygame.image.load('SimpleFlatKeys/Light/Space-Key.png')
     enter_image = pygame.image.load('SimpleFlatKeys/Light/Enter-Key.png')
@@ -413,6 +411,7 @@ while True:
             game.end_game()
             screen.fill(DARK)
             game.draw_lines()
+            game.draw_history()
 
         if game.draw_condition():
             game.update_score()
@@ -420,9 +419,8 @@ while True:
             screen.fill(DARK)
             game.draw_lines()
 
-    if game.display_score:
-        screen.blit(player_X, (80,20))
-        screen.blit(player_O, (300,20))
+    screen.blit(player_X, (80,20))
+    screen.blit(player_O, (300,20))
 
     screen.blit(space_image, (65, 460))
     screen.blit(space_message, (158, 465))
