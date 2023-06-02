@@ -424,9 +424,9 @@ while True:
     # IMAGES
     space_image = pygame.image.load('SimpleFlatKeys/Light/Space-Key.png')
     enter_image = pygame.image.load('SimpleFlatKeys/Light/Enter-Key.png')
-    start_button = pygame.image.load('start.png')
-    options_button = pygame.image.load('options.png')
-    quit_button = pygame.image.load('quit.png')
+    start_button = pygame.image.load('assets/start.png')
+    options_button = pygame.image.load('assets/options.png')
+    quit_button = pygame.image.load('assets/quit.png')
 
     # SCALE IMAGES
     space_image = pygame.transform.scale(space_image, (78, 34))
@@ -487,7 +487,7 @@ while True:
         elif not game.display_game:
 
             # CURSOR IF NOT IN GAME
-            ms_skin = pygame.image.load('mouse_skin_default.png')
+            ms_skin = pygame.image.load('assets/cursor_default.png')
             ms_skin = pygame.transform.scale(ms_skin, (16, 22))
             cursor = pygame.cursors.Cursor((1, 1), ms_skin)
             pygame.mouse.set_cursor(cursor)
