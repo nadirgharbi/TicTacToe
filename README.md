@@ -3,7 +3,7 @@
 
 ### **Voici mon tout premier jeu (Finis) coder avec le langage Python**
 
-Bon c'est pas le dernier GTA mais au moins, pas besoin de connexion pour y jouer 😅
+Bon c'est pas GTA 6 mais au moins, pas besoin de connexion pour y jouer 😅
 
 
 ![alt text](./tic-tac-toe-img.png)
