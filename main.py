@@ -1,4 +1,4 @@
-import sys, pygame, pygame_gui
+import sys, pygame
 from const import *
 
 # TODO : Faire un systeme de pile pour l'historique de victoire
