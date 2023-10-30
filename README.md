@@ -19,5 +19,5 @@ Bon c'est pas GTA 6 mais au moins, pas besoin de connexion pour y jouer 😅
 
 Fait avec ❤️.
 
-_Author: nadirgharbi_
-_version: v1.1_
+_Author: nadirgharbi_  
+_version: v1.1_  
